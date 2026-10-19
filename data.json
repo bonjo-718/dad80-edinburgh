@@ -126,6 +126,23 @@
   ],
   "activities": [
     {
+      "name": "Dad back from Norway cruise 🚢",
+      "status": "Booked",
+      "start": "2027-07-27",
+      "end": null,
+      "who": "Dad",
+      "notes": "Cruise ends July 27. Dad is free from July 28 on.",
+      "highlight": true
+    },
+    {
+      "name": "Dad available for Edinburgh",
+      "status": "Idea",
+      "start": "2027-07-28",
+      "end": "2027-08-31",
+      "who": "Dad",
+      "notes": "Plan arrivals on or after July 28."
+    },
+    {
       "name": "Dad's 80th birthday 🍾",
       "status": "Booked",
       "start": "2027-08-05",
@@ -171,10 +188,10 @@
   ],
   "todos": [
     {
-      "name": "Lock Dad's preferred August dates",
+      "name": "Lock Dad's dates (he's free from July 28)",
       "status": "Open",
       "owner": "Ben",
-      "notes": "Everything else waits on this"
+      "notes": "Norway cruise ends July 27. Everything else waits on this."
     },
     {
       "name": "Collect RSVPs (Committed / Considering / Not coming)",
