@@ -231,6 +231,7 @@
  "flights": [],
  "lodging": []
 }</script>
+<script type="application/json" id="chat-data">[]</script>
 <!-- ===================================================================================== -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -276,7 +277,7 @@ nav.tabs a.cta[aria-current="page"]{background:var(--aub);color:var(--cream)}
   nav.tabs{display:none}
   .top .wrap{height:56px}
   .bottombar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:6px 4px calc(6px + env(safe-area-inset-bottom))}
-  .bottombar a{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;color:var(--muted);font-size:10.5px;font-weight:500;padding:4px 0;border-radius:10px}
+  .bottombar a{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;color:var(--muted);font-size:10px;font-weight:500;padding:4px 0;border-radius:10px}
   .bottombar a svg{width:22px;height:22px}
   .bottombar a[aria-current="page"]{color:var(--plum)}
   .bottombar a.cta span.dot{background:var(--plum);color:#fff}
@@ -482,6 +483,28 @@ main{padding:22px 0 60px}
 .copy{margin-top:14px;font-size:13px;color:rgba(245,238,220,.65)}
 .copy code{background:rgba(245,238,220,.1);padding:2px 6px;border-radius:6px;color:var(--cream);word-break:break-all}
 
+/* chat */
+.chat{display:flex;flex-direction:column;padding:0;overflow:hidden}
+.msgs{padding:20px;display:flex;flex-direction:column;gap:14px;min-height:340px;max-height:62vh;overflow-y:auto;background:linear-gradient(#fff,#FCFBFE)}
+.msgs .empty{margin:auto;max-width:360px;border:1px solid var(--line);box-shadow:var(--shadow);background:#fff}
+.msg{display:flex;gap:10px;align-items:flex-end;max-width:min(560px,92%)}
+.msg .bub{background:var(--plum-soft);border-radius:16px 16px 16px 5px;padding:9px 13px;min-width:0}
+.msg .hd{display:flex;gap:8px;align-items:baseline;font-size:12px;margin-bottom:1px}
+.msg .hd b{font-weight:600;color:var(--plum)}
+.msg .hd time{color:var(--muted)}
+.msg .tx{font-size:14.5px;white-space:pre-wrap;overflow-wrap:anywhere}
+.msg.org .bub{background:var(--aub);color:var(--cream)}
+.msg.org .hd b{color:var(--gold)}.msg.org .hd time{color:rgba(245,238,220,.6)}
+.daysep{align-self:center;font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--grey-soft);padding:3px 10px;border-radius:999px}
+.compose{border-top:1px solid var(--line);padding:14px;display:grid;grid-template-columns:180px 1fr auto;gap:10px;align-items:end;background:#fff}
+.compose input,.compose textarea{font:15px/1.4 var(--sans);color:var(--ink);border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:11px 13px;width:100%;resize:none;outline:none}
+.compose input:focus,.compose textarea:focus{border-color:var(--plum);background:#fff;box-shadow:0 0 0 3px var(--plum-soft)}
+.compose textarea{min-height:46px;max-height:160px}
+.compose .btn{height:46px;padding:0 22px}
+.compose .btn[aria-disabled="true"]{opacity:.45;pointer-events:none}
+.chat-note{padding:0 16px 14px;font-size:12.5px;color:var(--muted);background:#fff}
+.chat-note.warn{color:var(--red)}
+@media (max-width:640px){.compose{grid-template-columns:1fr auto}.compose input{grid-column:1/-1}.msgs{max-height:none;min-height:300px}}
 footer{color:var(--muted);font-size:12.5px;text-align:center;padding:10px 0 30px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
@@ -497,6 +520,7 @@ footer{color:var(--muted);font-size:12.5px;text-align:center;padding:10px 0 30px
       <a href="#schedule">Schedule</a>
       <a href="#todos">To-dos</a>
       <a href="#ideas">Ideas</a>
+      <a href="#chat">Chat</a>
       <a href="#reply" class="cta">Reply</a>
     </nav>
     <a class="reply-mini" href="#reply">Reply</a>
@@ -548,6 +572,10 @@ footer{color:var(--muted);font-size:12.5px;text-align:center;padding:10px 0 30px
         <div id="hometodos"></div>
       </div>
       <div class="card">
+        <h3>Family chat <a href="#chat">Open chat →</a></h3>
+        <div id="homechat"></div>
+      </div>
+      <div class="card">
         <h3>Travel log</h3>
         <div id="travel"></div>
       </div>
@@ -590,6 +618,21 @@ footer{color:var(--muted);font-size:12.5px;text-align:center;padding:10px 0 30px
   <div class="ideas" id="ideagrid"></div>
 </section>
 
+<!-- CHAT -->
+<section class="view" id="v-chat" data-view="chat">
+  <div class="vhead"><div><h2>Chat</h2><p>One thread for the whole family. Plans, questions, decisions.</p></div></div>
+  <div class="card chat">
+    <div class="msgs" id="msgs" aria-live="polite"></div>
+    <form class="compose" id="compose" autocomplete="on" onsubmit="return false">
+      <input id="c-name" name="name" placeholder="Your name" maxlength="60" aria-label="Your name" list="c-names">
+      <datalist id="c-names"></datalist>
+      <textarea id="c-text" rows="1" placeholder="Message the family…" maxlength="2000" aria-label="Message"></textarea>
+      <a class="btn plum" id="c-send" href="#" aria-disabled="true">Send</a>
+    </form>
+    <div class="chat-note" id="c-note">Send opens your email app with your message ready. Messages show up here within a few minutes.</div>
+  </div>
+</section>
+
 <!-- REPLY -->
 <section class="view" id="v-reply" data-view="reply">
   <div class="reply-hero">
@@ -617,6 +660,7 @@ footer{color:var(--muted);font-size:12.5px;text-align:center;padding:10px 0 30px
   <a href="#schedule"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>Schedule</a>
   <a href="#todos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/></svg>To-dos</a>
   <a href="#ideas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0012 3z"/></svg>Ideas</a>
+  <a href="#chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5.5h16a1 1 0 011 1v9a1 1 0 01-1 1h-9l-5 4v-4H4a1 1 0 01-1-1v-9a1 1 0 011-1z"/></svg>Chat</a>
   <a href="#reply" class="cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg>Reply</a>
 </nav>
 
@@ -792,13 +836,67 @@ $('rsvp').innerHTML=opts.map(function(o){
   return '<a class="'+o.cls+'" href="'+esc(href)+'"><span class="ic">'+o.ic+'</span><span>'+esc(o.t)+'<small>'+esc(o.s)+'</small></span></a>'}).join('');
 $('rsvp-addr').textContent=T.rsvp_email;
 
+/* ---- chat (email-fed; times shown only inside the Chat tab) ---- */
+var C=[];try{C=JSON.parse(document.getElementById('chat-data').textContent)||[]}catch(e){}
+C=C.filter(function(m){return m&&m.text}).sort(function(a,b){return String(a.date||'')<String(b.date||'')?-1:1});
+var cDate=function(m){var d=new Date(m.date);return isNaN(d)?null:d};
+var dayKey=function(d){return d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate()};
+function relTime(d){
+  var now=new Date(),diff=(now-d)/1000;
+  if(diff<45&&diff>-60)return 'just now';
+  if(diff<3600&&diff>0)return Math.round(diff/60)+' min ago';
+  if(diff<6*3600&&diff>0)return Math.round(diff/3600)+' hr ago';
+  var t=d.toLocaleTimeString([], {hour:'numeric',minute:'2-digit'});
+  if(dayKey(d)===dayKey(now))return t;
+  var y=new Date(now);y.setDate(now.getDate()-1);
+  if(dayKey(d)===dayKey(y))return 'Yesterday '+t;
+  return SHORT[d.getMonth()]+' '+d.getDate()+' · '+t;
+}
+function sepLabel(d){var now=new Date(),y=new Date(now);y.setDate(now.getDate()-1);
+  if(dayKey(d)===dayKey(now))return 'Today';if(dayKey(d)===dayKey(y))return 'Yesterday';return SHORT[d.getMonth()]+' '+d.getDate()}
+var orgs={};G.forEach(function(g){if(g.role==='Organizer')orgs[g.name.toLowerCase()]=1});
+function renderChat(){
+  var el=$('msgs');
+  if(!C.length){el.innerHTML='<div class="empty"><b>Start the conversation</b>Everything the family says here is saved, so nobody misses a decision.</div>';return}
+  var last=null,h='';
+  C.forEach(function(m){
+    var d=cDate(m);
+    if(d&&dayKey(d)!==last){h+='<div class="daysep">'+sepLabel(d)+'</div>';last=dayKey(d)}
+    var org=orgs[String(m.name||'').toLowerCase()]||/^ben\b/i.test(m.name||'');
+    h+='<div class="msg'+(org?' org':'')+'">'+av(m.name||'?')+'<div class="bub"><div class="hd"><b>'+esc(m.name||'Someone')+'</b>'+(d?'<time title="'+esc(d.toLocaleString())+'">'+esc(relTime(d))+'</time>':'')+'</div><div class="tx">'+esc(m.text)+'</div></div></div>';
+  });
+  el.innerHTML=h;
+}
+renderChat();
+var people_=C.map(function(m){return m.name}).filter(function(v,i,a){return v&&a.indexOf(v)===i});
+$('homechat').innerHTML=C.length?(function(){var m=C[C.length-1];return '<div class="up" style="padding-top:2px">'+av(m.name||'?')+'<div style="min-width:0"><h4>'+esc(m.name||'Someone')+'</h4><p style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">'+esc(m.text)+'</p><p style="margin-top:4px">'+C.length+' message'+(C.length===1?'':'s')+' · '+people_.length+' '+(people_.length===1?'person':'people')+'</p></div></div>'})()
+  :'<div class="empty"><b>Start the conversation</b>Ask a question or float an idea.</div>';
+/* compose → mailto */
+$('c-names').innerHTML=G.map(function(g){return '<option value="'+esc(g.name)+'">'}).join('');
+var cn=$('c-name'),ct=$('c-text'),cs=$('c-send');
+try{cn.value=localStorage.getItem('dad80-name')||''}catch(e){}
+function syncSend(){
+  var ok=cn.value.trim()&&ct.value.trim();
+  cs.setAttribute('aria-disabled',ok?'false':'true');
+  cs.href=ok?'mailto:'+T.rsvp_email+'?subject='+encodeURIComponent("Dad's 80th chat: "+cn.value.trim())+'&body='+encodeURIComponent(ct.value.trim()):'#';
+  ct.style.height='auto';ct.style.height=Math.min(ct.scrollHeight+2,160)+'px';
+}
+cn.addEventListener('input',function(){try{localStorage.setItem('dad80-name',cn.value.trim())}catch(e){};syncSend()});
+ct.addEventListener('input',syncSend);
+cs.addEventListener('click',function(e){
+  if(cs.getAttribute('aria-disabled')==='true'){e.preventDefault();(cn.value.trim()?ct:cn).focus();return}
+  $('c-note').textContent='Your email app should open now. Hit send there, and your message shows up here within a few minutes.';
+});
+syncSend();
+
 /* ---- router ---- */
-var views=['home','family','schedule','todos','ideas','reply'];
+var views=['home','family','schedule','todos','ideas','chat','reply'];
 function route(){
   var h=(location.hash||'#home').slice(1);if(views.indexOf(h)<0)h='home';
   [].forEach.call(document.querySelectorAll('.view'),function(v){v.classList.toggle('on',v.getAttribute('data-view')===h)});
   [].forEach.call(document.querySelectorAll('nav a'),function(a){a.getAttribute('href')==='#'+h?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current')});
   window.scrollTo(0,0);
+  if(h==='chat'){var m=$('msgs');m.scrollTop=m.scrollHeight}
 }
 window.addEventListener('hashchange',route);route();
 window.addEventListener('scroll',function(){$('top').classList.toggle('scrolled',window.scrollY>4)},{passive:true});
