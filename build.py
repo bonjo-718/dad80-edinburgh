@@ -104,11 +104,39 @@ def clean(data):
     lodging = [{"name": l.get("name", ""), "type": l.get("type", ""), "status": l.get("status", "")}
                for l in data.get("lodging", [])]
     return {"trip": trip, "guests": guests, "activities": acts, "todos": todos,
-            "flights": flights, "lodging": lodging}, clean_chat(data.get("chat"))
+            "flights": flights, "lodging": lodging,
+            "resources": clean_resources(data.get("resources") or {})}, clean_chat(data.get("chat"))
+
+def clean_resources(r):
+    """Links + housing cards. https URLs only; text scrubbed of emails/phones;
+    any listing date outside Jul/Aug 2027 is dropped."""
+    def url(u):
+        u = str(u or "").strip()
+        return u if u.startswith("https://") and not EMAIL_RE.search(u) else ""
+    def dates_ok(v):
+        found = re.findall(r"20\d\d-\d\d-\d\d", str(v or ""))
+        return all(in_window(d) for d in found)
+    flights = []
+    for f in r.get("flights", []):
+        u = url(f.get("url"))
+        if u and dates_ok(u):
+            flights.append({"title": scrub(f.get("title", "")), "url": u, "note": scrub(f.get("note", ""))})
+    housing = []
+    for h in r.get("housing", []):
+        item = {k: scrub(h.get(k, "")).strip() for k in ("name", "area", "sleeps", "price", "dates", "comment", "shared_by")}
+        if not dates_ok(item["dates"]):
+            item["dates"] = ""                           # omit out-of-window listing dates
+        item["url"] = url(h.get("url"))
+        if item["name"]:
+            housing.append({k: v for k, v in item.items() if v})
+    return {"flights": flights, "housing": housing,
+            "housing_intro": scrub(r.get("housing_intro", "")), "housing_tip": scrub(r.get("housing_tip", ""))}
 
 CHAT_BLOCK = re.compile(r'<script type="application/json" id="chat-data">.*?</script>', re.S)
 
 def privacy_check(html):
+    from urllib.parse import unquote
+    html = unquote(html)                         # catch encoded emails/dates inside links too
     emails = set(re.findall(r"[\w.+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}", html)) - {RSVP}
     phones = re.findall(r"(?<![\w#-])\+?\d[\d ()./-]{8,}\d(?![\w-])", html)
     phones = [p for p in phones if len(re.sub(r"\D", "", p)) >= 10 and not re.match(r"^20\d\d-\d\d-\d\d", p)]

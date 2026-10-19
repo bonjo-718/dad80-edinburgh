@@ -229,7 +229,65 @@
   }
  ],
  "flights": [],
- "lodging": []
+ "lodging": [
+  {
+   "name": "Elie Escapes",
+   "type": "Other",
+   "status": "Idea"
+  },
+  {
+   "name": "Elie Select",
+   "type": "Other",
+   "status": "Idea"
+  },
+  {
+   "name": "holidaycottages.co.uk · Elie & East Neuk",
+   "type": "Other",
+   "status": "Idea"
+  }
+ ],
+ "resources": {
+  "flights": [
+   {
+    "title": "Google Flights · Columbus (CMH) → Edinburgh (EDI)",
+    "url": "https://www.google.com/travel/flights?q=Flights%20to%20EDI%20from%20CMH%20on%202027-07-29%20through%202027-08-08",
+    "note": "Prefilled: out Thu, Jul 29 · back Sun, Aug 8, 2027. Change the origin to your home airport."
+   },
+   {
+    "title": "Flights to Edinburgh (any airport)",
+    "url": "https://www.google.com/travel/flights?q=Flights%20to%20EDI",
+    "note": "Open search: set your own airport and dates. Dad is free from Jul 28; the birthday dinner is Aug 5."
+   }
+  ],
+  "housing": [
+   {
+    "name": "Elie Escapes",
+    "area": "Elie, East Neuk of Fife",
+    "sleeps": "Homes sleep 4–16 (largest: Davaar & Davaar Cottage, 9 bedrooms, sleeps 16)",
+    "comment": "One of three agencies a local in Elie recommended.",
+    "shared_by": "Greg",
+    "url": "https://elieescapes.com/properties/"
+   },
+   {
+    "name": "Elie Select",
+    "area": "Elie, East Neuk of Fife",
+    "sleeps": "Groups of 6–22; neighbouring houses can be booked together",
+    "comment": "One of three agencies a local in Elie recommended.",
+    "shared_by": "Greg",
+    "url": "https://www.elieselect.com/"
+   },
+   {
+    "name": "holidaycottages.co.uk · Elie & East Neuk",
+    "area": "Elie and nearby East Neuk villages (Anstruther, Pittenweem, St Monans)",
+    "sleeps": "Mostly 2–7 per cottage; 7-night stays",
+    "comment": "Booking site a local in Elie recommended; also covers nearby East Neuk villages.",
+    "shared_by": "Greg",
+    "url": "https://www.holidaycottages.co.uk/cottages/elie"
+   }
+  ],
+  "housing_intro": "Shared by Greg: a local in Elie recommends these three rental agencies. Elie is a beach village in the East Neuk of Fife, about 10 miles south of St Andrews and roughly 75 minutes' drive from Edinburgh.",
+  "housing_tip": "Book early. With the Open at St Andrews in July 2027, the area is likely to be busy even in August, and many houses book up well ahead."
+ }
 }</script>
 <script type="application/json" id="chat-data">[]</script>
 <!-- ===================================================================================== -->
@@ -277,7 +335,7 @@ nav.tabs a.cta[aria-current="page"]{background:var(--aub);color:var(--cream)}
   nav.tabs{display:none}
   .top .wrap{height:56px}
   .bottombar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:6px 4px calc(6px + env(safe-area-inset-bottom))}
-  .bottombar a{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;color:var(--muted);font-size:10px;font-weight:500;padding:4px 0;border-radius:10px}
+  .bottombar a{flex:1;min-width:0;letter-spacing:-.01em;display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;color:var(--muted);font-size:10px;font-weight:500;padding:4px 0;border-radius:10px}
   .bottombar a svg{width:22px;height:22px}
   .bottombar a[aria-current="page"]{color:var(--plum)}
   .bottombar a.cta span.dot{background:var(--plum);color:#fff}
@@ -505,6 +563,29 @@ main{padding:22px 0 60px}
 .chat-note{padding:0 16px 14px;font-size:12.5px;color:var(--muted);background:#fff}
 .chat-note.warn{color:var(--red)}
 @media (max-width:640px){.compose{grid-template-columns:1fr auto}.compose input{grid-column:1/-1}.msgs{max-height:none;min-height:300px}}
+/* resources */
+.res-sec{margin:4px 0 22px}
+.res-sec>h3{font-size:20px;margin:0 0 4px}
+.res-sec>p{margin:0 0 12px;color:var(--muted);font-size:14px;max-width:720px}
+.links{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.lk{display:flex;gap:14px;align-items:center;background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:16px 18px;text-decoration:none;color:inherit;transition:transform .15s}
+.lk:hover{transform:translateY(-2px)}
+.lk .ic{flex:none;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:22px;background:var(--plum-soft)}
+.lk.primary{background:var(--aub);color:var(--cream)}.lk.primary .ic{background:rgba(245,238,220,.12)}
+.lk.primary p{color:rgba(245,238,220,.75)}
+.lk h4{margin:0;font-size:15.5px}.lk p{margin:2px 0 0;color:var(--muted);font-size:13px}
+.lk .go{margin-left:auto;font-weight:600;color:var(--plum);flex:none}.lk.primary .go{color:var(--gold)}
+.house{background:#fff;border-radius:16px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:transform .15s}
+.house:hover{transform:translateY(-2px)}
+.house .ban{height:84px;background-color:var(--aub);position:relative;
+  background-image:repeating-linear-gradient(90deg,transparent 0 22px,rgba(107,62,142,.55) 22px 28px,transparent 28px 40px),repeating-linear-gradient(0deg,transparent 0 22px,rgba(201,167,90,.25) 22px 24px,transparent 24px 40px)}
+.house .ban span{position:absolute;left:16px;bottom:12px;color:var(--cream);font:600 19px var(--serif)}
+.house .bd{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.house .row{font-size:13.5px;color:var(--ink)}.house .row b{color:var(--muted);font-weight:500;margin-right:4px}
+.house q{font-size:13.5px;color:var(--muted);font-style:italic}
+.house .by{margin-top:auto;padding-top:8px;display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--muted)}
+.house .by strong{color:var(--plum);font-weight:600}
+.tipbox{display:flex;gap:10px;align-items:flex-start;background:var(--amber-soft);color:#6B4A10;border-radius:14px;padding:12px 14px;font-size:14px;margin:0 0 12px}
 footer{color:var(--muted);font-size:12.5px;text-align:center;padding:10px 0 30px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
@@ -521,6 +602,7 @@ footer{color:var(--muted);font-size:12.5px;text-align:center;padding:10px 0 30px
       <a href="#todos">To-dos</a>
       <a href="#ideas">Ideas</a>
       <a href="#chat">Chat</a>
+      <a href="#resources">Resources</a>
       <a href="#reply" class="cta">Reply</a>
     </nav>
     <a class="reply-mini" href="#reply">Reply</a>
@@ -633,6 +715,13 @@ footer{color:var(--muted);font-size:12.5px;text-align:center;padding:10px 0 30px
   </div>
 </section>
 
+<!-- RESOURCES -->
+<section class="view" id="v-resources" data-view="resources">
+  <div class="vhead"><div><h2>Resources</h2><p>Flights and places to stay for July–August 2027.</p></div></div>
+  <div class="res-sec"><h3>✈️ Flights</h3><p>Aim to arrive on or after July 28 (Dad's back from his cruise July 27). The birthday dinner is Thursday, August 5.</p><div class="links" id="res-flights"></div></div>
+  <div class="res-sec"><h3>🏡 Places to stay</h3><p id="res-intro"></p><div id="res-tip"></div><div class="ideas" id="res-housing"></div></div>
+</section>
+
 <!-- REPLY -->
 <section class="view" id="v-reply" data-view="reply">
   <div class="reply-hero">
@@ -661,6 +750,7 @@ footer{color:var(--muted);font-size:12.5px;text-align:center;padding:10px 0 30px
   <a href="#todos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/></svg>To-dos</a>
   <a href="#ideas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0012 3z"/></svg>Ideas</a>
   <a href="#chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5.5h16a1 1 0 011 1v9a1 1 0 01-1 1h-9l-5 4v-4H4a1 1 0 01-1-1v-9a1 1 0 011-1z"/></svg>Chat</a>
+  <a href="#resources"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"/></svg>Links</a>
   <a href="#reply" class="cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg>Reply</a>
 </nav>
 
@@ -889,8 +979,21 @@ cs.addEventListener('click',function(e){
 });
 syncSend();
 
+/* ---- resources ---- */
+var R=D.resources||{};
+$('res-flights').innerHTML=(R.flights||[]).map(function(f,i){
+  return '<a class="lk'+(i===0?' primary':'')+'" href="'+esc(f.url)+'" target="_blank" rel="noopener"><span class="ic">✈️</span><div style="min-width:0"><h4>'+esc(f.title)+'</h4>'+(f.note?'<p>'+esc(f.note)+'</p>':'')+'</div><span class="go">↗</span></a>'}).join('')||'<div class="empty"><b>No flight links yet</b></div>';
+$('res-intro').textContent=R.housing_intro||'';
+$('res-tip').innerHTML=R.housing_tip?'<div class="tipbox">💡 <span>'+esc(R.housing_tip)+'</span></div>':'';
+$('res-housing').innerHTML=(R.housing||[]).map(function(h){
+  var row=function(l,v){return v?'<div class="row"><b>'+l+'</b>'+esc(v)+'</div>':''};
+  var tag=h.url?'a':'div';
+  return '<'+tag+' class="house"'+(h.url?' href="'+esc(h.url)+'" target="_blank" rel="noopener"':'')+'><div class="ban"><span>'+esc(h.name)+'</span></div><div class="bd">'+
+    row('Area',h.area)+row('Sleeps',h.sleeps)+row('Price',h.price)+row('Dates',h.dates)+(h.comment?'<p style="margin:0;font-size:13.5px;color:var(--muted)">'+esc(h.comment)+'</p>':'')+
+    '<div class="by"><span>'+(h.shared_by?'Shared by <strong>'+esc(h.shared_by)+'</strong>':'')+'</span>'+(h.url?'<span style="color:var(--plum);font-weight:600">View listings ↗</span>':'')+'</div></div></'+tag+'>'}).join('')||'<div class="empty"><b>No housing ideas yet</b>Share one in the chat.</div>';
+
 /* ---- router ---- */
-var views=['home','family','schedule','todos','ideas','chat','reply'];
+var views=['home','family','schedule','todos','ideas','chat','resources','reply'];
 function route(){
   var h=(location.hash||'#home').slice(1);if(views.indexOf(h)<0)h='home';
   [].forEach.call(document.querySelectorAll('.view'),function(v){v.classList.toggle('on',v.getAttribute('data-view')===h)});

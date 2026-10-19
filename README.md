@@ -14,3 +14,8 @@ Family members tap Send on the Chat tab → their email app opens a message to t
     python3 build.py --add-chat "Name" "message" [--date 2026-10-20T14:05] --publish
 
 Emails/phone numbers in chat text are stripped automatically.
+
+## Resources
+`data.json` → `resources.flights` (title/url/note) and `resources.housing`
+(name/url/area/sleeps/price/dates/comment/shared_by). Only https links are kept; listing
+dates outside Jul–Aug 2027 are dropped.

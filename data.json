@@ -219,5 +219,73 @@
     }
   ],
   "flights": [],
-  "lodging": []
+  "lodging": [
+    {
+      "name": "Elie Escapes",
+      "type": "Other",
+      "status": "Idea"
+    },
+    {
+      "name": "Elie Select",
+      "type": "Other",
+      "status": "Idea"
+    },
+    {
+      "name": "holidaycottages.co.uk · Elie & East Neuk",
+      "type": "Other",
+      "status": "Idea"
+    }
+  ],
+  "resources": {
+    "flights": [
+      {
+        "title": "Google Flights · Columbus (CMH) → Edinburgh (EDI)",
+        "url": "https://www.google.com/travel/flights?q=Flights%20to%20EDI%20from%20CMH%20on%202027-07-29%20through%202027-08-08",
+        "note": "Prefilled: out Thu, Jul 29 · back Sun, Aug 8, 2027. Change the origin to your home airport.",
+        "dates": [
+          "2027-07-29",
+          "2027-08-08"
+        ]
+      },
+      {
+        "title": "Flights to Edinburgh (any airport)",
+        "url": "https://www.google.com/travel/flights?q=Flights%20to%20EDI",
+        "note": "Open search: set your own airport and dates. Dad is free from Jul 28; the birthday dinner is Aug 5."
+      }
+    ],
+    "housing_intro": "Shared by Greg: a local in Elie recommends these three rental agencies. Elie is a beach village in the East Neuk of Fife, about 10 miles south of St Andrews and roughly 75 minutes' drive from Edinburgh.",
+    "housing_tip": "Book early. With the Open at St Andrews in July 2027, the area is likely to be busy even in August, and many houses book up well ahead.",
+    "housing": [
+      {
+        "name": "Elie Escapes",
+        "url": "https://elieescapes.com/properties/",
+        "area": "Elie, East Neuk of Fife",
+        "sleeps": "Homes sleep 4–16 (largest: Davaar & Davaar Cottage, 9 bedrooms, sleeps 16)",
+        "price": "",
+        "dates": "",
+        "comment": "One of three agencies a local in Elie recommended.",
+        "shared_by": "Greg"
+      },
+      {
+        "name": "Elie Select",
+        "url": "https://www.elieselect.com/",
+        "area": "Elie, East Neuk of Fife",
+        "sleeps": "Groups of 6–22; neighbouring houses can be booked together",
+        "price": "",
+        "dates": "",
+        "comment": "One of three agencies a local in Elie recommended.",
+        "shared_by": "Greg"
+      },
+      {
+        "name": "holidaycottages.co.uk · Elie & East Neuk",
+        "url": "https://www.holidaycottages.co.uk/cottages/elie",
+        "area": "Elie and nearby East Neuk villages (Anstruther, Pittenweem, St Monans)",
+        "sleeps": "Mostly 2–7 per cottage; 7-night stays",
+        "price": "",
+        "dates": "",
+        "comment": "Booking site a local in Elie recommended; also covers nearby East Neuk villages.",
+        "shared_by": "Greg"
+      }
+    ]
+  }
 }
