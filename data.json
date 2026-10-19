@@ -9,34 +9,197 @@
     "tagline": "Eighty years, one family, one wee trip to Edinburgh."
   },
   "guests": [
-    {"name": "Ben Frank", "status": "Committed", "party": 1, "dates": false, "flights": false, "lodging": false, "role": "Organizer"},
-    {"name": "Dad", "status": "Committed", "party": 1, "dates": false, "flights": false, "lodging": false, "role": "Birthday boy"},
-    {"name": "Cobie Frank", "status": "No reply", "party": 1, "dates": false, "flights": false, "lodging": false},
-    {"name": "Cobie Frank +1", "status": "No reply", "party": 1, "dates": false, "flights": false, "lodging": false},
-    {"name": "Isaac Frank", "status": "No reply", "party": 1, "dates": false, "flights": false, "lodging": false},
-    {"name": "Isaac Frank +1", "status": "No reply", "party": 1, "dates": false, "flights": false, "lodging": false},
-    {"name": "Tony Frank", "status": "No reply", "party": 1, "dates": false, "flights": false, "lodging": false},
-    {"name": "Susan Frank", "status": "No reply", "party": 1, "dates": false, "flights": false, "lodging": false},
-    {"name": "Dylan Frank", "status": "No reply", "party": 1, "dates": false, "flights": false, "lodging": false},
-    {"name": "Lizzie Frank", "status": "No reply", "party": 1, "dates": false, "flights": false, "lodging": false},
-    {"name": "Sonja Carey", "status": "No reply", "party": 1, "dates": false, "flights": false, "lodging": false},
-    {"name": "Jef Frank", "status": "No reply", "party": 1, "dates": false, "flights": false, "lodging": false},
-    {"name": "Jef Frank +1", "status": "No reply", "party": 1, "dates": false, "flights": false, "lodging": false},
-    {"name": "Kathy McKay", "status": "No reply", "party": 1, "dates": false, "flights": false, "lodging": false}
+    {
+      "name": "Ben Frank",
+      "status": "Committed",
+      "party": 1,
+      "dates": false,
+      "flights": false,
+      "lodging": false,
+      "role": "Organizer"
+    },
+    {
+      "name": "Dad",
+      "status": "Committed",
+      "party": 1,
+      "dates": false,
+      "flights": false,
+      "lodging": false,
+      "role": "Birthday boy"
+    },
+    {
+      "name": "Kathy McKay",
+      "status": "No reply",
+      "party": 1,
+      "dates": false,
+      "flights": false,
+      "lodging": false
+    },
+    {
+      "name": "Cobie Frank",
+      "status": "No reply",
+      "party": 1,
+      "dates": false,
+      "flights": false,
+      "lodging": false
+    },
+    {
+      "name": "Cobie Frank +1",
+      "status": "No reply",
+      "party": 1,
+      "dates": false,
+      "flights": false,
+      "lodging": false
+    },
+    {
+      "name": "Isaac Frank",
+      "status": "No reply",
+      "party": 1,
+      "dates": false,
+      "flights": false,
+      "lodging": false
+    },
+    {
+      "name": "Isaac Frank +1",
+      "status": "No reply",
+      "party": 1,
+      "dates": false,
+      "flights": false,
+      "lodging": false
+    },
+    {
+      "name": "Tony Frank",
+      "status": "No reply",
+      "party": 1,
+      "dates": false,
+      "flights": false,
+      "lodging": false
+    },
+    {
+      "name": "Susan Frank",
+      "status": "No reply",
+      "party": 1,
+      "dates": false,
+      "flights": false,
+      "lodging": false
+    },
+    {
+      "name": "Dylan Frank",
+      "status": "No reply",
+      "party": 1,
+      "dates": false,
+      "flights": false,
+      "lodging": false
+    },
+    {
+      "name": "Lizzie Frank",
+      "status": "No reply",
+      "party": 1,
+      "dates": false,
+      "flights": false,
+      "lodging": false
+    },
+    {
+      "name": "Sonja Carey",
+      "status": "No reply",
+      "party": 1,
+      "dates": false,
+      "flights": false,
+      "lodging": false
+    },
+    {
+      "name": "Jef Frank",
+      "status": "No reply",
+      "party": 1,
+      "dates": false,
+      "flights": false,
+      "lodging": false
+    },
+    {
+      "name": "Jef Frank +1",
+      "status": "No reply",
+      "party": 1,
+      "dates": false,
+      "flights": false,
+      "lodging": false
+    }
   ],
   "activities": [
-    {"name": "Dad's 80th birthday 🍾", "status": "Booked", "start": "2027-08-05", "end": null, "who": "Family", "notes": "The big night — August 5, 2027", "highlight": true},
-    {"name": "Birthday dinner", "status": "Considering", "start": "2027-08-05", "end": null, "who": "Family", "notes": "The night of Dad's birthday. Venue locks once dates are firm.", "time": "Evening"},
-    {"name": "The Open Championship · St Andrews", "status": "Idea", "start": "2027-07-11", "end": "2027-07-18", "who": "Open", "notes": "155th Open at St Andrews. Practice and championship week.", "link": "https://www.theopen.com/"},
-    {"name": "Edinburgh Castle", "status": "Idea", "start": null, "end": null, "who": "Open", "notes": "Classic first-day stop"},
-    {"name": "Arthur's Seat hike", "status": "Idea", "start": null, "end": null, "who": "Open", "notes": "Weather dependent"}
+    {
+      "name": "Dad's 80th birthday 🍾",
+      "status": "Booked",
+      "start": "2027-08-05",
+      "end": null,
+      "who": "Family",
+      "notes": "The big night — August 5, 2027",
+      "highlight": true
+    },
+    {
+      "name": "Birthday dinner",
+      "status": "Considering",
+      "start": "2027-08-05",
+      "end": null,
+      "who": "Family",
+      "notes": "The night of Dad's birthday. Venue locks once dates are firm.",
+      "time": "Evening"
+    },
+    {
+      "name": "The Open Championship · St Andrews",
+      "status": "Idea",
+      "start": "2027-07-11",
+      "end": "2027-07-18",
+      "who": "Open",
+      "notes": "155th Open at St Andrews. Practice and championship week.",
+      "link": "https://www.theopen.com/"
+    },
+    {
+      "name": "Edinburgh Castle",
+      "status": "Idea",
+      "start": null,
+      "end": null,
+      "who": "Open",
+      "notes": "Classic first-day stop"
+    },
+    {
+      "name": "Arthur's Seat hike",
+      "status": "Idea",
+      "start": null,
+      "end": null,
+      "who": "Open",
+      "notes": "Weather dependent"
+    }
   ],
   "todos": [
-    {"name": "Lock Dad's preferred August dates", "status": "Open", "owner": "Ben", "notes": "Everything else waits on this"},
-    {"name": "Collect RSVPs (Committed / Considering / Not coming)", "status": "Open", "owner": "Ben", "notes": "Use the Reply buttons on this page"},
-    {"name": "Send the trip link + RSVP note to the family", "status": "Open", "owner": "Ben", "notes": "Point everyone at the three reply buttons"},
-    {"name": "Book birthday dinner · Aug 5, 2027", "status": "Open", "owner": "TBD", "notes": "Once headcount firms"},
-    {"name": "Pick Edinburgh home base / lodging", "status": "Open", "owner": "TBD", "notes": "Decide together once dates lock"}
+    {
+      "name": "Lock Dad's preferred August dates",
+      "status": "Open",
+      "owner": "Ben",
+      "notes": "Everything else waits on this"
+    },
+    {
+      "name": "Collect RSVPs (Committed / Considering / Not coming)",
+      "status": "Open",
+      "owner": "Ben",
+      "notes": "Use the Reply buttons on this page"
+    },
+    {
+      "name": "Send the trip link + RSVP note to the family",
+      "status": "Open",
+      "owner": "Ben",
+      "notes": "Point everyone at the three reply buttons"
+    },
+    {
+      "name": "Book birthday dinner · Aug 5, 2027",
+      "status": "Open",
+      "owner": "TBD",
+      "notes": "Once headcount firms"
+    },
+    {
+      "name": "Pick Edinburgh home base / lodging",
+      "status": "Open",
+      "owner": "TBD",
+      "notes": "Decide together once dates lock"
+    }
   ],
   "flights": [],
   "lodging": []
