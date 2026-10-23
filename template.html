@@ -655,6 +655,9 @@ function renderRoster(){
   $('filters').innerHTML=['All'].concat(STATUSES.map(function(s){return s.k})).map(function(k){
     var n=k==='All'?G.length:counts[k];return '<button class="'+(cur===k?'on':'')+'" data-k="'+esc(k)+'">'+esc(k)+'<em>'+n+'</em></button>'}).join('');
   var list=G.filter(function(g){return cur==='All'||g.status===cur}).slice().sort(function(a,b){return order[a.status]-order[b.status]});
+  /* Kathy always sits next to Dad */
+  var ki=-1,di=-1;list.forEach(function(g,i){if(/^kathy\b/i.test(g.name))ki=i;if(g.name==='Dad')di=i});
+  if(ki>=0&&di>=0&&ki!==di+1){var kg=list.splice(ki,1)[0];di=list.indexOf(G.filter(function(g){return g.name==='Dad'})[0]);list.splice(di+1,0,kg)}
   $('roster').innerHTML=list.length?list.map(function(g){
     var t=function(v,l){return '<span class="tick'+(v?' y':'')+'">'+(v?'✓':'○')+' '+l+'</span>'};
     return '<div class="person"><div class="top-row"><div class="who">'+av(g.name)+'<div style="min-width:0"><div class="nm">'+esc(g.name)+'</div><div class="rl">'+(g.role?esc(g.role)+' · ':'')+'party of '+(+g.party||1)+'</div></div></div><span class="pill '+stCls(g.status)+'">'+esc(g.status)+'</span></div>'+
