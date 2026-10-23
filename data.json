@@ -175,7 +175,8 @@
       "start": null,
       "end": null,
       "who": "Open",
-      "notes": "Classic first-day stop"
+      "notes": "Historic fortress on Castle Rock above the Old Town, home of the Honours of Scotland (the Scottish Crown Jewels). Classic first-day stop.",
+      "link": "https://www.edinburghcastle.scot/"
     },
     {
       "name": "Arthur's Seat hike",
@@ -184,6 +185,33 @@
       "end": null,
       "who": "Open",
       "notes": "Weather dependent"
+    },
+    {
+      "name": "St Andrews",
+      "status": "Idea",
+      "start": null,
+      "end": null,
+      "who": "Open",
+      "notes": "The Home of Golf: the Old Course, castle and cathedral ruins, Scotland's oldest university and West Sands beach. About 10 miles north of Elie.",
+      "link": "https://www.welcometofife.com/destination/st-andrews"
+    },
+    {
+      "name": "Walking tour of St Andrews",
+      "status": "Idea",
+      "start": null,
+      "end": null,
+      "who": "Open",
+      "notes": "Guided walking tour with St Andrews Tours (local operator since 2014): town, cathedral, castle, university and the Old Course, about 1.5 hours. Book ahead.",
+      "link": "https://standrewstours.com/"
+    },
+    {
+      "name": "Suggested stay: Elie",
+      "status": "Idea",
+      "start": null,
+      "end": null,
+      "who": "Family",
+      "notes": "Beach village in the East Neuk of Fife, near Kathy in Colinsburgh and about 10 miles south of St Andrews. Rental agencies are on the Resources tab.",
+      "link": "https://www.welcometofife.com/destination/elie--earlsferry"
     }
   ],
   "todos": [
